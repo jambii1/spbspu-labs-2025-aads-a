@@ -123,6 +123,74 @@ typename maslevtsov::Tree< Key, T, Compare >::const_iterator maslevtsov::Tree< K
 }
 
 template< class Key, class T, class Compare >
+template< typename F >
+F maslevtsov::Tree< Key, T, Compare >::traverse_lnr(F f)
+{
+  if (empty()) {
+    throw std::logic_error("nothing to traverse");
+  }
+  for (auto it = begin(); it != end(); ++it) {
+    f(*it);
+  }
+  return f;
+}
+
+template< class Key, class T, class Compare >
+template< typename F >
+F maslevtsov::Tree< Key, T, Compare >::traverse_lnr(F f) const
+{
+  if (empty()) {
+    throw std::logic_error("nothing to traverse");
+  }
+  for (auto it = cbegin(); it != cend(); ++it) {
+    f(*it);
+  }
+  return f;
+}
+
+template< class Key, class T, class Compare >
+template< typename F >
+F maslevtsov::Tree< Key, T, Compare >::traverse_rnl(F f)
+{
+  if (empty()) {
+    throw std::logic_error("nothing to traverse");
+  }
+  auto it = --end();
+  for (; it != begin(); --it) {
+    f(*it);
+  }
+  f(*it);
+  --it;
+  return f;
+}
+
+template< class Key, class T, class Compare >
+template< typename F >
+F maslevtsov::Tree< Key, T, Compare >::traverse_rnl(F f) const
+{
+  if (empty()) {
+    throw std::logic_error("nothing to traverse");
+  }
+  auto it = --cend();
+  for (; it != cbegin(); --it) {
+    f(*it);
+  }
+  f(*it);
+  --it;
+  return f;
+}
+
+template< class Key, class T, class Compare >
+template< typename F >
+F maslevtsov::Tree< Key, T, Compare >::traverse_breadth(F f)
+{}
+
+template< class Key, class T, class Compare >
+template< typename F >
+F maslevtsov::Tree< Key, T, Compare >::traverse_breadth(F f) const
+{}
+
+template< class Key, class T, class Compare >
 bool maslevtsov::Tree< Key, T, Compare >::empty() const noexcept
 {
   return size_ == 0;

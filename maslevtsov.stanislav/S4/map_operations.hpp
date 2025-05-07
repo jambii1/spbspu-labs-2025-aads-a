@@ -4,7 +4,7 @@
 #include <map>
 #include <string>
 #include <functional>
-#include "tree/declaration.hpp"
+#include <tree/declaration.hpp>
 
 namespace maslevtsov {
   using set_t = std::map< int, std::string >;
