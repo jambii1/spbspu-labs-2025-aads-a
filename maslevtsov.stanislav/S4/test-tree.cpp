@@ -1,5 +1,5 @@
 #include <boost/test/unit_test.hpp>
-#include "tree/definition.hpp"
+#include <tree/definition.hpp>
 
 BOOST_AUTO_TEST_SUITE(plug)
 BOOST_AUTO_TEST_CASE(plug)
